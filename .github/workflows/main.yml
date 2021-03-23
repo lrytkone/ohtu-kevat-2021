@@ -9,6 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+	run:
+		working-directory: ./viikko1/riippuvuuksien-injektointi-1
+
 
     steps:
       - uses: actions/checkout@v2
@@ -17,17 +21,12 @@ jobs:
         with:
           python-version: 3.6
       - name: Install Poetry
-        working-directory: ./viikko1/riippuvuuksien-injektointi-1
         run: pip install poetry
       - name: Install dependencies
-        working-directory: ./viikko1/riippuvuuksien-injektointi-1
         run: poetry install
       - name: Run tests
-        working-directory: ./viikko1/riippuvuuksien-injektointi-1
         run: poetry run coverage run --branch -m pytest
       - name: Coverage report
-        working-directory: ./viikko1/riippuvuuksien-injektointi-1
         run: poetry run coverage xml
       - name: Coverage report to Codecov
-        working-directory: ./viikko1/riippuvuuksien-injektointi-1
         run: bash <(curl -s https://codecov.io/bash)
