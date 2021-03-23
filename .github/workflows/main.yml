@@ -18,7 +18,7 @@ jobs:
           python-version: 3.6
       - name: Move to folder
         run: |
-		cd viikko1/riippuvuuksien-injektointi-1/
+		cd viikko1/riippuvuuksien-injektointi-1
 		pwd
 		ls -la	
       - name: Install Poetry
