@@ -18,11 +18,16 @@ jobs:
           python-version: 3.6
       - name: Install Poetry
         run: pip install poetry
+	working-directory: viikko1/riippuvuuksien-injektointi-1
       - name: Install dependencies
         run: poetry install
+	working-directory: viikko1/riippuvuuksien-injektointi-1
       - name: Run tests
         run: poetry run coverage run --branch -m pytest
+	working-directory: viikko1/riippuvuuksien-injektointi-1
       - name: Coverage report
         run: poetry run coverage xml
+	working-directory: viikko1/riippuvuuksien-injektointi-1
       - name: Coverage report to Codecov
         run: bash <(curl -s https://codecov.io/bash)
+	working-directory: viikko1/riippuvuuksien-injektointi-1
