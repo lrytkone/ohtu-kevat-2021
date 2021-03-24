@@ -19,3 +19,7 @@ class TestStatistics(unittest.TestCase):
     def test_top_scorers(self):
         top = self.statistics.top_scorers(3)
         self.assertEqual(top[0].name,"Gretzky")
+
+    def test_tyhjahaku(self):
+        player = self.statistics.search("Hansen")
+        self.assertEqual(player, None)
