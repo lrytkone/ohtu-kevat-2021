@@ -1,4 +1,4 @@
-from player_reader import PlayerReader
+#from player_reader import PlayerReader
 
 
 def sort_by_points(player):
@@ -6,10 +6,8 @@ def sort_by_points(player):
 
 
 class Statistics:
-    def __init__(self):
-        reader = PlayerReader(
-            "https://nhlstatisticsforohtu.herokuapp.com/players.txt"
-        )
+    def __init__(self, playerreader):
+        reader = playerreader
 
         self._players = reader.get_players()
 

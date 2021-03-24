@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      working-directory: ./viikko1/riippuvuuksien-injektointi-1
+      working-directory: ./viikko1/nhl-statistics-1
 
     steps:
       - uses: actions/checkout@v2
