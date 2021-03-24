@@ -9,25 +9,32 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./viikko1/riippuvuuksien-injektointi-1
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Set up Python 3.6
         uses: actions/setup-python@v2
         with:
           python-version: 3.6
-      - name: Move to folder
+
+      - name: Install Poetry and deps
         run: |
-		cd viikko1/riippuvuuksien-injektointi-1
-		pwd
-		ls -la	
-      - name: Install Poetry
-        run: pip install poetry
-      - name: Install dependencies
-        run: poetry install
+          pip install poetry
+          poetry install
+          poetry add coverage --dev
+        working-directory: ${{env.working-directory}}
+
       - name: Run tests
         run: poetry run coverage run --branch -m pytest
+        working-directory: ${{env.working-directory}}
+
       - name: Coverage report
         run: poetry run coverage xml
+        working-directory: ${{env.working-directory}}
+
       - name: Coverage report to Codecov
         run: bash <(curl -s https://codecov.io/bash)
+        working-directory: ${{env.working-directory}}
