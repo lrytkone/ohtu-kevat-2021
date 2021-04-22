@@ -2,7 +2,7 @@ from entities.user import User
 from repositories.user_repository import (
     user_repository as default_user_repository
 )
-
+import re
 
 class UserInputError(Exception):
     pass
@@ -42,5 +42,15 @@ class UserService:
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
 
+        pattern = '^[a-z]+$'
+        if not re.match(pattern, username) or len(username) < 3:
+            raise UserInputError("Invalid username")
+
+        pas_pattern = '[^a-z]'
+        if not re.search(pas_pattern, password) or len(password) < 8:
+            raise UserInputError("Invalid password")
+
+        if password != password_confirmation:
+            raise UserInputError("Invalid password confirmation")
 
 user_service = UserService()
